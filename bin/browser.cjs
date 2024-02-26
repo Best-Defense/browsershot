@@ -236,7 +236,8 @@ const callChrome = async pup => {
 
         if (request.options && request.options.device) {
             const devices = puppet.devices;
-            const device = devices[request.options.device];
+            // Fallback if we don't find any in the primary device list
+            const device = devices[request.options.device] ?? puppet.KnownDevices[request.options.device;
             await page.emulate(device);
         }
 
